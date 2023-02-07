@@ -9,10 +9,18 @@
 </template>
 
 <script>
-import {colorPicker } from '../composables/colorPicker'
+
+import { colorPicker } from "../composables/colorPicker";
+import { ref } from "vue";
 export default {
   setup() {
-    const { colors, message, matchColor } = colorPicker();
+    const colors = ["green", "red", "blue", "purple"];
+    let ans = ref("Pick a color...");
+    const pickColor = (color) => {
+      let { message } = colorPicker(color, colors);
+      ans.value = message;
+    };
+    return { ans, pickColor, colors };
   },
 };
 </script>
